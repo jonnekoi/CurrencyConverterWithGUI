@@ -15,11 +15,9 @@ public class dbconn {
             }catch (SQLException e){
                 System.out.println("Connection failed");
                 e.printStackTrace();
+                return null;
             }
-            return conn;
         }
-        else {
-            return conn;
-        }
+        return conn;
     }
 }
