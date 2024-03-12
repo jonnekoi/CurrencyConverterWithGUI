@@ -97,5 +97,10 @@
                 <Font name="Comic Sans MS Italic" size="18.0" />
             </font>
         </Button>
+      <Text fx:id="databaseStatusField" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+         <GridPane.margin>
+            <Insets bottom="75.0" left="10.0" />
+         </GridPane.margin>
+      </Text>
     </children>
 </GridPane>

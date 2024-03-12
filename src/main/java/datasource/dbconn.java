@@ -11,7 +11,7 @@ public class dbconn {
         if (conn == null){
             try{
                 conn = DriverManager.getConnection(
-                        "jdbc:mariadb://localhost:3306/currency?user=root&password=root");
+                        "jdbc:mariadb://localhost:306/currency?user=root&password=root");
             }catch (SQLException e){
                 System.out.println("Connection failed");
                 e.printStackTrace();

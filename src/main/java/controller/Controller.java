@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,23 +23,27 @@ public class Controller {
     private ChoiceBox<String> fromChoice;
     @FXML
     private ChoiceBox<String> toChoice;
+    @FXML
+    private Text databaseStatusField;
 
     private CurrencyDao currencyDao;
     public Controller(){
         this.currencyDao = new CurrencyDao();
     }
     public void initialize(){
-        Connection connection = dbconn.getConn();
-        if (connection == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Connection Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Unable to connect to the database. Please check your database connection.");
-            alert.showAndWait();
-            System.exit(1);
-        }
         this.currencyDao = new CurrencyDao(new dbconn());
         try{
+            Connection connection = dbconn.getConn();
+            if (connection == null) {
+                databaseStatusField.setText("Database connection error");
+                databaseStatusField.setFill(javafx.scene.paint.Color.RED);
+                databaseStatusField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+                return;
+            }else{
+                databaseStatusField.setText("Database connected");
+                databaseStatusField.setFill(javafx.scene.paint.Color.GREEN);
+                databaseStatusField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+            }
             List<String> currencyNames = currencyDao.getCurrencyNames();
             fromChoice.getItems().addAll(currencyNames);
             toChoice.getItems().addAll(currencyNames);
