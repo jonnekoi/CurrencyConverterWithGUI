@@ -20,7 +20,6 @@ public class currency {
         this.conversion_rate = conversion_rate;
     }
     public currency(){
-
     }
     public int getId() {
         return id;

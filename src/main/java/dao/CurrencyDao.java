@@ -12,9 +12,6 @@ public class CurrencyDao {
         this.entityManager = entityManager;
     }
 
-    public CurrencyDao() {
-    }
-
     public double getExchangeRate(String Currency){
         TypedQuery<Double> query = entityManager.createQuery(
                 "SELECT c.conversion_rate FROM currency c WHERE c.abbreviation = :abbreviation", Double.class);
@@ -32,12 +29,10 @@ public class CurrencyDao {
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-
             currency currency = new currency();
             currency.setName(name);
             currency.setAbbreviation(abbreviation);
             currency.setConversion_rate(rate);
-
             entityManager.persist(currency);
             transaction.commit();
         } catch (RuntimeException e) {

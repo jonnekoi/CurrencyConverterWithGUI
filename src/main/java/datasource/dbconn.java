@@ -10,7 +10,7 @@ public class dbconn {
 
     public static EntityManager getEntityManager(){
         if (em == null){
-            emf = Persistence.createEntityManagerFactory("CompanyMariaDbUnit");
+            emf = Persistence.createEntityManagerFactory("CurrencyMariaDb");
             em = emf.createEntityManager();
         }
         return em;

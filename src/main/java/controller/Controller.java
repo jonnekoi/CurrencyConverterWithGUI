@@ -1,5 +1,5 @@
 package controller;
-
+import dao.TransactionDao;
 import dao.CurrencyDao;
 import datasource.dbconn;
 import javafx.fxml.FXML;
@@ -38,8 +38,10 @@ public class Controller {
     private Text addErrorField;
 
     private CurrencyDao currencyDao;
+    private TransactionDao transactionDao;
     public Controller(){
         this.currencyDao = new CurrencyDao(dbconn.getEntityManager());
+        this.transactionDao = new TransactionDao(dbconn.getEntityManager());
     }
     public void initialize(){
         this.currencyDao = new CurrencyDao(dbconn.getEntityManager());
@@ -86,6 +88,7 @@ public class Controller {
             double toRate = currencyDao.getExchangeRate(to);
             result = amount * toRate / fromRate;
             resultField.setText(String.valueOf(result));
+            transactionDao.AddTransaction(from, to, amount, result);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
