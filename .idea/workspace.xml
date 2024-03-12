@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="150403fb-6685-40a9-b9fd-53d02d8db898" name="Changes" comment="database connection error">
+    <list default="true" id="150403fb-6685-40a9-b9fd-53d02d8db898" name="Changes" comment="port changed">
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/currency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/addWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CurrencyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CurrencyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/dbconn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/dbconn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/index.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +73,8 @@
       <updated>1710196927524</updated>
       <workItem from="1710196928609" duration="265000" />
       <workItem from="1710197221724" duration="2029000" />
-      <workItem from="1710229417161" duration="705000" />
+      <workItem from="1710229417161" duration="3964000" />
+      <workItem from="1710233386922" duration="3703000" />
     </task>
     <task id="LOCAL−00001" summary="commit">
       <option name="closed" value="true" />
@@ -82,7 +90,21 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1710199246687</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="database connection error display">
+      <option name="closed" value="true" />
+      <created>1710230372506</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1710230372506</updated>
+    </task>
+    <task id="LOCAL−00004" summary="port changed">
+      <option name="closed" value="true" />
+      <created>1710230480686</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1710230480686</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +124,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="database connection error" />
-    <option name="LAST_COMMIT_MESSAGE" value="database connection error" />
+    <MESSAGE value="database connection error display" />
+    <MESSAGE value="port changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="port changed" />
   </component>
 </project>

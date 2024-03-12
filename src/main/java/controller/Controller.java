@@ -3,15 +3,18 @@ package controller;
 import dao.CurrencyDao;
 import datasource.dbconn;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import jakarta.persistence.EntityManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.List;
 
 public class Controller {
@@ -25,21 +28,27 @@ public class Controller {
     private ChoiceBox<String> toChoice;
     @FXML
     private Text databaseStatusField;
+    @FXML
+    private TextField addNameField;
+    @FXML
+    private TextField addAbbField;
+    @FXML
+    private TextField addRateField;
 
     private CurrencyDao currencyDao;
     public Controller(){
-        this.currencyDao = new CurrencyDao();
+        this.currencyDao = new CurrencyDao(dbconn.getEntityManager());
     }
     public void initialize(){
-        this.currencyDao = new CurrencyDao(new dbconn());
-        try{
-            Connection connection = dbconn.getConn();
-            if (connection == null) {
+        this.currencyDao = new CurrencyDao(dbconn.getEntityManager());
+        try {
+            EntityManager em = dbconn.getEntityManager();
+            if (!em.isOpen()) {
                 databaseStatusField.setText("Database connection error");
                 databaseStatusField.setFill(javafx.scene.paint.Color.RED);
                 databaseStatusField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
                 return;
-            }else{
+            } else {
                 databaseStatusField.setText("Database connected");
                 databaseStatusField.setFill(javafx.scene.paint.Color.GREEN);
                 databaseStatusField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
@@ -47,7 +56,7 @@ public class Controller {
             List<String> currencyNames = currencyDao.getCurrencyNames();
             fromChoice.getItems().addAll(currencyNames);
             toChoice.getItems().addAll(currencyNames);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -75,13 +84,55 @@ public class Controller {
             double toRate = currencyDao.getExchangeRate(to);
             result = amount * toRate / fromRate;
             resultField.setText(String.valueOf(result));
-        } catch (SQLException e){
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
     public void clear(){
-        inputField.setText("");
-        resultField.setText("");
+        inputField.clear();
+        resultField.clear();
+    }
+    public void addWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addWindow.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addCurr(){
+        String name = addNameField.getText();
+        String abbreviation = addAbbField.getText();
+        double rate = Double.parseDouble(addRateField.getText());
+
+        try {
+            currencyDao.addCurrency(name, abbreviation, rate);
+            addNameField.clear();
+            addAbbField.clear();
+            addRateField.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addClear(){
+        addNameField.clear();
+        addAbbField.clear();
+        addRateField.clear();
+    }
+
+    public void refresh(){
+        List<String> currencyNames = currencyDao.getCurrencyNames();
+        fromChoice.getItems().removeAll(fromChoice.getItems());
+        toChoice.getItems().removeAll(toChoice.getItems());
+        fromChoice.getItems().addAll(currencyNames);
+        toChoice.getItems().addAll(currencyNames);
+        inputField.clear();
+        resultField.clear();
     }
 }
