@@ -47,4 +47,11 @@ public class CurrencyDao {
             throw e;
         }
     }
+    public boolean currencyExists(String name, String abbreviation) {
+        Query query = entityManager.createQuery("SELECT COUNT(c) FROM currency c WHERE c.name = :name OR c.abbreviation = :abbreviation");
+        query.setParameter("name", name);
+        query.setParameter("abbreviation", abbreviation);
+        long count = (long) query.getSingleResult();
+        return count > 0;
+    }
 }

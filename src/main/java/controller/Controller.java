@@ -34,6 +34,8 @@ public class Controller {
     private TextField addAbbField;
     @FXML
     private TextField addRateField;
+    @FXML
+    private Text addErrorField;
 
     private CurrencyDao currencyDao;
     public Controller(){
@@ -108,15 +110,37 @@ public class Controller {
     public void addCurr(){
         String name = addNameField.getText();
         String abbreviation = addAbbField.getText();
-        double rate = Double.parseDouble(addRateField.getText());
+        String rateText = addRateField.getText();
+
+        if (name.isEmpty() || abbreviation.isEmpty() || rateText.isEmpty()) {
+            addErrorField.setText("Currency add error!");
+            addErrorField.setFill(javafx.scene.paint.Color.RED);
+            addErrorField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+            return;
+        }
+
+        double rate = Double.parseDouble(rateText);
+
+        if (currencyDao.currencyExists(name, abbreviation)) {
+            addErrorField.setText("Currency already exists!");
+            addErrorField.setFill(javafx.scene.paint.Color.RED);
+            addErrorField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+            return;
+        }
 
         try {
             currencyDao.addCurrency(name, abbreviation, rate);
             addNameField.clear();
             addAbbField.clear();
             addRateField.clear();
+            addErrorField.setText("Currency added successfully!");
+            addErrorField.setFill(javafx.scene.paint.Color.GREEN);
+            addErrorField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
         } catch (Exception e) {
             e.printStackTrace();
+            addErrorField.setText("Currency add error!");
+            addErrorField.setFill(javafx.scene.paint.Color.RED);
+            addErrorField.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
         }
     }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:controller="controller.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,7 +43,7 @@
             <Insets left="50.0" right="50.0" top="80.0" />
          </GridPane.margin>
       </TextField>
-      <Button onAction="#addCurr" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0" text="Add" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" onAction="#addCurr" prefHeight="44.0" prefWidth="80.0" text="Add" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="75.0" left="115.0" />
          </GridPane.margin>
@@ -51,7 +51,7 @@
               <Font size="18.0" />
           </font>
       </Button>
-      <Button onAction="#addClear" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0" text="Clear" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" onAction="#addClear" prefHeight="44.0" prefWidth="80.0" text="Clear" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="115.0" top="75.0" />
          </GridPane.margin>
@@ -59,5 +59,10 @@
               <Font size="18.0" />
           </font>
       </Button>
+      <Text fx:id="addErrorField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="298.21630859375" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </GridPane>
